@@ -105,7 +105,7 @@ public class Employee {
 		return TaxFunction.calculateTax(this);
 	}
 
-	public int calculateMonthsWorkingInYear() {
+	private int calculateMonthsWorkingInYear() {
 		LocalDate currentDate = LocalDate.now();
 		if (currentDate.getYear() == this.dateJoined.getYear()) {
 			return currentDate.getMonthValue() - this.dateJoined.getMonthValue();
