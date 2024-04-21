@@ -53,11 +53,7 @@ public class Employee {
 	}
 
 	private int calculateGradeSalary(int baseSalary) {
-		if (nationality == Nationality.FOREIGN) {
-			return (int) (baseSalary * 1.5);
-		} else {
-			return baseSalary;
-		}
+		return (nationality == Nationality.FOREIGN) ? (int) (baseSalary * 1.5) : baseSalary;
 	}
 
 	public void setAnnualDeductible(int deductible) {
