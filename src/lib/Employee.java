@@ -21,10 +21,6 @@ public class Employee {
 	private List<String> childNames;
 	private List<String> childIdNumbers;
 
-	private static final int GRADE_1_SALARY = 3000000;
-	private static final int GRADE_2_SALARY = 5000000;
-	private static final int GRADE_3_SALARY = 7000000;
-
 	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address,
 			LocalDate dateJoined, Nationality nationality) {
 		this.employeeId = employeeId;
@@ -39,24 +35,21 @@ public class Employee {
 	}
 
 	public void setMonthlySalary(int grade) {
-		switch (grade) {
-			case 1:
-				monthlySalary = calculateGradeSalary(GRADE_1_SALARY);
-				break;
-			case 2:
-				monthlySalary = calculateGradeSalary(GRADE_2_SALARY);
-				break;
-			case 3:
-				monthlySalary = calculateGradeSalary(GRADE_3_SALARY);
-				break;
-		}
-	}
-
-	private int calculateGradeSalary(int baseSalary) {
-		if (nationality == Nationality.FOREIGN) {
-			return (int) (baseSalary * 1.5);
-		} else {
-			return baseSalary;
+		if (grade == 1) {
+			monthlySalary = 3000000;
+			if (nationality == Nationality.FOREIGN) {
+				monthlySalary = (int) (3000000 * 1.5);
+			}
+		} else if (grade == 2) {
+			monthlySalary = 5000000;
+			if (nationality == Nationality.FOREIGN) {
+				monthlySalary = (int) (3000000 * 1.5);
+			}
+		} else if (grade == 3) {
+			monthlySalary = 7000000;
+			if (nationality == Nationality.FOREIGN) {
+				monthlySalary = (int) (3000000 * 1.5);
+			}
 		}
 	}
 
