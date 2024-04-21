@@ -35,21 +35,24 @@ public class Employee {
 	}
 
 	public void setMonthlySalary(int grade) {
-		if (grade == 1) {
-			monthlySalary = 3000000;
-			if (nationality == Nationality.FOREIGN) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		} else if (grade == 2) {
-			monthlySalary = 5000000;
-			if (nationality == Nationality.FOREIGN) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		} else if (grade == 3) {
-			monthlySalary = 7000000;
-			if (nationality == Nationality.FOREIGN) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
+		switch (grade) {
+			case 1:
+				monthlySalary = calculateGradeSalary(3000000);
+				break;
+			case 2:
+				monthlySalary = calculateGradeSalary(5000000);
+				break;
+			case 3:
+				monthlySalary = calculateGradeSalary(7000000);
+				break;
+		}
+	}
+
+	private int calculateGradeSalary(int baseSalary) {
+		if (nationality == Nationality.FOREIGN) {
+			return (int) (baseSalary * 1.5);
+		} else {
+			return baseSalary;
 		}
 	}
 
