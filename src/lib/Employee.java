@@ -100,12 +100,16 @@ public class Employee {
 
 	public int calculateMonthsWorkingInYear() {
 		LocalDate currentDate = LocalDate.now();
-		if (currentDate.getYear() == this.dateJoined.getYear()) {
-			return currentDate.getMonthValue() - this.dateJoined.getMonthValue();
-		} else {
-			return 12;
+		LocalDate joinedDate = this.dateJoined;
+
+		int monthsWorkedInYear = 12;
+		if (currentDate.getYear() == joinedDate.getYear()) {
+			monthsWorkedInYear = Math.max(currentDate.getMonthValue() - joinedDate.getMonthValue(), 0);
 		}
+
+		return monthsWorkedInYear;
 	}
+
 }
 
 enum Nationality {
