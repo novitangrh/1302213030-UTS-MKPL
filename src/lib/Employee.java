@@ -73,6 +73,26 @@ public class Employee {
 		this.spouseIdNumber = idNumber;
 	}
 
+	public int getMonthlySalary() {
+		return monthlySalary;
+	}
+
+	public int getOtherMonthlyIncome() {
+		return otherMonthlyIncome;
+	}
+
+	public int getAnnualDeductible() {
+		return annualDeductible;
+	}
+
+	public String getSpouseIdNumber() {
+		return spouseIdNumber;
+	}
+
+	public List<String> getChildIdNumbers() {
+		return childIdNumbers;
+	}
+
 	public void addChild(String childName, String childIdNumber) {
 		childNames.add(childName);
 		childIdNumbers.add(childIdNumber);
@@ -82,12 +102,10 @@ public class Employee {
 
 		// Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah
 		// bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
-		int monthsWorkingInYear = calculateMonthsWorkingInYear();
-		return TaxFunction.calculateTax(this.monthlySalary, this.otherMonthlyIncome, monthsWorkingInYear,
-				this.annualDeductible, this.spouseIdNumber.equals(""), this.childIdNumbers.size());
+		return TaxFunction.calculateTax(this);
 	}
 
-	private int calculateMonthsWorkingInYear() {
+	public int calculateMonthsWorkingInYear() {
 		LocalDate currentDate = LocalDate.now();
 		if (currentDate.getYear() == this.dateJoined.getYear()) {
 			return currentDate.getMonthValue() - this.dateJoined.getMonthValue();
