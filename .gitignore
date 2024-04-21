@@ -5,3 +5,4 @@ bin/lib/Employee.class
 bin/lib/Nationality.class
 .project
 bin/gui/MainWindow.class
+bin/lib/TaxFunction.class
