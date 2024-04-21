@@ -82,16 +82,18 @@ public class Employee {
 
 		// Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah
 		// bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
-		LocalDate date = LocalDate.now();
+		int monthsWorkingInYear = calculateMonthsWorkingInYear();
+		return TaxFunction.calculateTax(this.monthlySalary, this.otherMonthlyIncome, monthsWorkingInYear,
+				this.annualDeductible, this.spouseIdNumber.equals(""), this.childIdNumbers.size());
+	}
 
-		if (date.getYear() == yearJoined) {
-			monthWorkingInYear = date.getMonthValue() - monthJoined;
+	private int calculateMonthsWorkingInYear() {
+		LocalDate currentDate = LocalDate.now();
+		if (currentDate.getYear() == this.dateJoined.getYear()) {
+			return currentDate.getMonthValue() - this.dateJoined.getMonthValue();
 		} else {
-			monthWorkingInYear = 12;
+			return 12;
 		}
-
-		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible,
-				spouseIdNumber.equals(""), childIdNumbers.size());
 	}
 }
 
